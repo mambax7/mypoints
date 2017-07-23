@@ -15,15 +15,17 @@
  * @package         MyPoints
  * @since           1.0
  * @author          trabis <lusopoemas@gmail.com>
- * @version         $Id: myalbum.php 0 2009-11-14 18:47:04Z trabis $
+ * @param $uid
+ * @param $since
+ * @return
  */
 
-defined('XOOPS_ROOT_PATH') or die("XOOPS root path not defined");
+// defined('XOOPS_ROOT_PATH') || exit("XOOPS root path not defined");
 
 function myalbum_useritems_count($uid, $since)
 {
     global $xoopsDB;
-    list($ret) = $xoopsDB->fetchRow($xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("myalbum_photos")." WHERE submitter='$uid' AND status>0 AND date>'$since'"));
+    list($ret) = $xoopsDB->fetchRow($xoopsDB->query('SELECT COUNT(*) FROM ' . $xoopsDB->prefix('myalbum_photos') . " WHERE submitter='$uid' AND status>0 AND date>'$since'"));
 
     return $ret;
 }

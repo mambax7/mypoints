@@ -15,51 +15,50 @@
  * @package         Mypoints
  * @since           1.0
  * @author          trabis <lusopoemas@gmail.com>
- * @version         $Id: index.php 0 2009-11-14 18:47:04Z trabis $
  */
 
-include_once dirname(dirname(dirname(__FILE__))) . '/mainfile.php';
+require_once __DIR__ . '/../../mainfile.php';
 
-include_once XOOPS_ROOT_PATH . '/modules/mypoints/include/functions.php';
+require_once XOOPS_ROOT_PATH . '/modules/mypoints/include/functions.php';
 
-$xoopsOption['template_main'] = 'mypoints_showall.html';
-include_once XOOPS_ROOT_PATH . '/header.php';
+$GLOBALS['xoopsOption']['template_main'] = 'mypoints_showall.tpl';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
-$details = isset($_GET['det']) ? intval($_GET['det']) : 0;
+$details = isset($_GET['det']) ? (int)$_GET['det'] : 0;
 
-$plugin_handler = xoops_getmodulehandler('plugin');
-$relation_handler = xoops_getmodulehandler('relation');
-$user_handler = xoops_getmodulehandler('user');
+$pluginHandler   = xoops_getModuleHandler('plugin');
+$relationHandler = xoops_getModuleHandler('relation');
+$userHandler     = xoops_getModuleHandler('user');
 
 $refreshtime = $xoopsModuleConfig['refreshtime'];
-$since = strtotime($xoopsModuleConfig['countsince']);
-$countwebm = $xoopsModuleConfig['countadmin'];
-$limit = $xoopsModuleConfig['memberstoshow'];
+$since       = strtotime($xoopsModuleConfig['countsince']);
+$countwebm   = $xoopsModuleConfig['countadmin'];
+$limit       = $xoopsModuleConfig['memberstoshow'];
 
 $xoopsTpl->assign('topmessage', sprintf(_MA_MYPOINTS_TOPMESSAGE, $limit, $xoopsConfig['sitename']));
 
 if ($refreshtime < 60) {
-    $refreshtimes = $refreshtime ;
-    $message = $refreshtimes == 1 ? _MA_MYPOINTS_LSECOND : _MA_MYPOINTS_LSECONDS;
-} else if ($refreshtime < 3600) {
-    $refreshtimes = intval($refreshtime / 60);
-    $message = $refreshtimes == 1 ? _MA_MYPOINTS_LMINUTE : _MA_MYPOINTS_LMINUTES;
-} else if ($refreshtime < 86400) {
-    $refreshtimes = intval($refreshtime / 3600);
-    $message = $refreshtimes == 1 ? _MA_MYPOINTS_LHOUR : _MA_MYPOINTS_LHOURS;
+    $refreshtimes = $refreshtime;
+    $message      = $refreshtimes == 1 ? _MA_MYPOINTS_LSECOND : _MA_MYPOINTS_LSECONDS;
+} elseif ($refreshtime < 3600) {
+    $refreshtimes = (int)($refreshtime / 60);
+    $message      = $refreshtimes == 1 ? _MA_MYPOINTS_LMINUTE : _MA_MYPOINTS_LMINUTES;
+} elseif ($refreshtime < 86400) {
+    $refreshtimes = (int)($refreshtime / 3600);
+    $message      = $refreshtimes == 1 ? _MA_MYPOINTS_LHOUR : _MA_MYPOINTS_LHOURS;
 } else {
-    $refreshtimes = intval($refreshtime / 86400);
-    $message = $refreshtimes == 1 ? _MA_MYPOINTS_LDAY : _MA_MYPOINTS_LDAYS;
+    $refreshtimes = (int)($refreshtime / 86400);
+    $message      = $refreshtimes == 1 ? _MA_MYPOINTS_LDAY : _MA_MYPOINTS_LDAYS;
 }
 
 $xoopsTpl->assign('updatemessage', sprintf(_MA_MYPOINTS_UPDATEMESSAGE, $refreshtimes, $message));
-$xoopsTpl->assign('sincemessage', sprintf(_MA_MYPOINTS_SINCEMESSAGE, formatTimeStamp($since, "m", $xoopsConfig['server_TZ'])));
+$xoopsTpl->assign('sincemessage', sprintf(_MA_MYPOINTS_SINCEMESSAGE, formatTimestamp($since, 'm', $xoopsConfig['server_TZ'])));
 
 $criteria = new CriteriaCompo(new Criteria('pluginisactive', 1));
 //$criteria->add(new Criteria('plugintype', 'items'), 'AND');
 $criteria->setSort('pluginmulti');
 $criteria->setOrder('DESC');
-$plugins = $plugin_handler->getObjects($criteria);
+$plugins = $pluginHandler->getObjects($criteria);
 unset($criteria);
 
 if ($details == 1) {
@@ -74,23 +73,23 @@ $criteria->setSort('userpoints');
 $criteria->setOrder('DESC');
 $criteria->setLimit($limit);
 //$criteria->setStart($start);
-$users = $user_handler->getObjects($criteria);
+$users   = $userHandler->getObjects($criteria);
 $myusers = array();
 
 $i = 1;
 foreach ($users as $user) {
     if ($user->getVar('userpoints') > 0) {
         $myusers[$i]['rank'] = $i;
-        $myusers[$i]['link'] = "<a href='" . XOOPS_URL . "/userinfo.php?uid=" . $user->getVar('useruid') . "'>" . $user->getVar('useruname') . "</a>";
+        $myusers[$i]['link'] = "<a href='" . XOOPS_URL . '/userinfo.php?uid=' . $user->getVar('useruid') . "'>" . $user->getVar('useruname') . '</a>';
         if ($details == 1) {
-            foreach ($plugins as $plugin){
-                $relation = $relation_handler->getByPluginUid($plugin->getVar('pluginid'), $user->getVar('useruid'));
-                $points = is_object($relation) ? $relation->getVar('relationpoints') : 0;
+            foreach ($plugins as $plugin) {
+                $relation                      = $relationHandler->getByPluginUid($plugin->getVar('pluginid'), $user->getVar('useruid'));
+                $points                        = is_object($relation) ? $relation->getVar('relationpoints') : 0;
                 $myusers[$i]['pluginpoints'][] = $points;
             }
         }
         $myusers[$i]['points'] = $user->getVar('userpoints');
-        $i++;
+        ++$i;
     }
 }
 
@@ -98,20 +97,20 @@ $xoopsTpl->assign('users', $myusers);
 
 $detailslink = "<a href='index.php?det=";
 if ($details == 1) {
-    $detailslink .= "0' title='" . _MA_MYPOINTS_MOREOFF . "'>" . _MA_MYPOINTS_MOREOFF .  "</a>";
+    $detailslink .= "0' title='" . _MA_MYPOINTS_MOREOFF . "'>" . _MA_MYPOINTS_MOREOFF . '</a>';
 } else {
-    $detailslink .= "1' title='" . _MA_MYPOINTS_MOREON . "'>" . _MA_MYPOINTS_MOREON . "</a>";
+    $detailslink .= "1' title='" . _MA_MYPOINTS_MOREON . "'>" . _MA_MYPOINTS_MOREON . '</a>';
 }
 $xoopsTpl->assign('detailslink', $detailslink);
 
 $message = '';
 foreach ($plugins as $plugin) {
-    $message .= $plugin->getVar('pluginname').' : ';
-    $points   = $plugin->getVar('pluginmulti') == 1 ? _MA_MYPOINTS_LPOINT : _MA_MYPOINTS_LPOINTS;
-    $message .= $plugin->getVar('pluginmulti'). ' ' . $points . '<br />';
+    $message .= $plugin->getVar('pluginname') . ' : ';
+    $points  = $plugin->getVar('pluginmulti') == 1 ? _MA_MYPOINTS_LPOINT : _MA_MYPOINTS_LPOINTS;
+    $message .= $plugin->getVar('pluginmulti') . ' ' . $points . '<br>';
 }
 
 $xoopsTpl->assign('howtoearnmessage', $message);
 mypoints_updatePoints();
 
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';

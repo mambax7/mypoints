@@ -1,3 +1,8 @@
+1.02 Beta 1       2014-04-23
+=================================
+- moved all images, CSS, and JS files to /assets (mamba)
+- renamed .html Smarty templates to .tpl (mamba)
+
 <b><u>=> Version 1.01 (2013-04-30)</u></b>
 - Converted to XOOPS 2.5.5 Admin GUI (mamba)
 

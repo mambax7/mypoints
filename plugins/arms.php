@@ -15,15 +15,17 @@
  * @package         MyPoints
  * @since           1.0
  * @author          trabis <lusopoemas@gmail.com>
- * @version         $Id: arms.php 0 2009-11-14 18:47:04Z trabis $
+ * @param $uid
+ * @param $since
+ * @return
  */
 
-defined('XOOPS_ROOT_PATH') or die("XOOPS root path not defined");
+// defined('XOOPS_ROOT_PATH') || exit("XOOPS root path not defined");
 
 function arms_useritems_count($uid, $since)
 {
     global $xoopsDB;
-    list($ret) = $xoopsDB->fetchRow($xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("arms_pages")." WHERE uid ='$uid' AND page_posttime > '$since'"));
+    list($ret) = $xoopsDB->fetchRow($xoopsDB->query('SELECT COUNT(*) FROM ' . $xoopsDB->prefix('arms_pages') . " WHERE uid ='$uid' AND page_posttime > '$since'"));
 
     return $ret;
 }
@@ -31,7 +33,7 @@ function arms_useritems_count($uid, $since)
 function arms_uservotes_count($uid, $since)
 {
     global $xoopsDB;
-    list($ret) = $xoopsDB->fetchRow($xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("arms_votelog")." WHERE uid ='$uid' AND vote_time > '$since'"));
+    list($ret) = $xoopsDB->fetchRow($xoopsDB->query('SELECT COUNT(*) FROM ' . $xoopsDB->prefix('arms_votelog') . " WHERE uid ='$uid' AND vote_time > '$since'"));
 
     return $ret;
 }

@@ -15,12 +15,11 @@
  * @package         Mypoints
  * @since           1.0
  * @author          trabis <lusopoemas@gmail.com>
- * @version         $Id: about.php 0 2009-11-14 18:47:04Z trabis $
  */
 
-include_once dirname(__FILE__) . '/header.php';
+require_once __DIR__ . '/header.php';
 
-include_once dirname(dirname(__FILE__)) . '/class/about.php';
+require_once __DIR__ . '/../class/about.php';
 xoops_cp_header();
 mypoints_adminmenu(2);
 $aboutObj = new MypointsAbout();

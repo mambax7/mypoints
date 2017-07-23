@@ -15,21 +15,19 @@
  * @package         MyPoints
  * @since           1.0
  * @author          trabis <lusopoemas@gmail.com>
- * @version         $Id: user.php 0 2009-11-14 18:47:04Z trabis $
  */
-
-defined('XOOPS_ROOT_PATH') or die("XOOPS root path not defined");
+// defined('XOOPS_ROOT_PATH') || exit("XOOPS root path not defined");
 
 class MypointsUser extends XoopsObject
 {
     /**
      * constructor
      */
-    function MypointsUser()
+    public function __construct()
     {
-        $this->initVar("useruid", XOBJ_DTYPE_INT, 0);
+        $this->initVar('useruid', XOBJ_DTYPE_INT, 0);
         $this->initVar('useruname', XOBJ_DTYPE_TXTBOX, '');
-        $this->initVar("userpoints", XOBJ_DTYPE_INT,0);
+        $this->initVar('userpoints', XOBJ_DTYPE_INT, 0);
     }
 }
 
@@ -37,10 +35,10 @@ class MypointsUserHandler extends XoopsPersistableObjectHandler
 {
     /**
      * constructor
+     * @param XoopsDatabase $db
      */
-    function __construct(&$db)
+    public function __construct(XoopsDatabase $db)
     {
-        parent::__construct($db, "mypoints_user", 'MypointsUser', "useruid", "useruname");
+        parent::__construct($db, 'mypoints_user', 'MypointsUser', 'useruid', 'useruname');
     }
-
 }

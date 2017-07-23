@@ -15,22 +15,20 @@
  * @package         MyPoints
  * @since           1.0
  * @author          trabis <lusopoemas@gmail.com>
- * @version         $Id: relation.php 0 2009-11-14 18:47:04Z trabis $
  */
-
-defined('XOOPS_ROOT_PATH') or die("XOOPS root path not defined");
+// defined('XOOPS_ROOT_PATH') || exit("XOOPS root path not defined");
 
 class MypointsRelation extends XoopsObject
 {
     /**
      * constructor
      */
-    function __construct()
+    public function __construct()
     {
-        $this->initVar("relationid", XOBJ_DTYPE_INT);
-        $this->initVar("relationuid", XOBJ_DTYPE_INT);
-        $this->initVar("relationpid", XOBJ_DTYPE_INT);
-        $this->initVar("relationpoints", XOBJ_DTYPE_INT);
+        $this->initVar('relationid', XOBJ_DTYPE_INT);
+        $this->initVar('relationuid', XOBJ_DTYPE_INT);
+        $this->initVar('relationpid', XOBJ_DTYPE_INT);
+        $this->initVar('relationpoints', XOBJ_DTYPE_INT);
     }
 }
 
@@ -38,20 +36,19 @@ class MypointsRelationHandler extends XoopsPersistableObjectHandler
 {
     /**
      * constructor
+     * @param XoopsDatabase $db
      */
-    function __construct(&$db)
+    public function __construct(XoopsDatabase $db)
     {
-        parent::__construct($db, "mypoints_relation", 'MypointsRelation', "relationid", "relationpid");
+        parent::__construct($db, 'mypoints_relation', 'MypointsRelation', 'relationid', 'relationpid');
     }
 
-    function getByPluginUid($pid , $uid)
+    public function getByPluginUid($pid, $uid)
     {
         $relation = false;
-        $pid = intval($pid);
-        $uid = intval($uid);
-        $sql = 'SELECT * FROM '.$this->db->prefix('mypoints_relation')
-        . ' WHERE relationpid=' . $pid
-        . ' AND relationuid=' . $uid;
+        $pid      = (int)$pid;
+        $uid      = (int)$uid;
+        $sql      = 'SELECT * FROM ' . $this->db->prefix('mypoints_relation') . ' WHERE relationpid=' . $pid . ' AND relationuid=' . $uid;
         if (!$result = $this->db->query($sql)) {
             return $relation;
         }

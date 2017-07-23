@@ -15,15 +15,17 @@
  * @package         MyPoints
  * @since           1.0
  * @author          trabis <lusopoemas@gmail.com>
- * @version         $Id: news.php 0 2009-11-14 18:47:04Z trabis $
+ * @param $uid
+ * @param $since
+ * @return
  */
 
-defined('XOOPS_ROOT_PATH') or die("XOOPS root path not defined");
+// defined('XOOPS_ROOT_PATH') || exit("XOOPS root path not defined");
 
 function news_useritems_count($uid, $since)
 {
     global $xoopsDB;
-    list($ret) = $xoopsDB->fetchRow($xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("stories")." WHERE (uid='$uid' AND published > '$since')"));
+    list($ret) = $xoopsDB->fetchRow($xoopsDB->query('SELECT COUNT(*) FROM ' . $xoopsDB->prefix('news_stories') . " WHERE (uid='$uid' AND published > '$since')"));
 
     return $ret;
 }
@@ -31,7 +33,7 @@ function news_useritems_count($uid, $since)
 function news_uservotes_count($uid, $since)
 {
     global $xoopsDB;
-    list($ret) = $xoopsDB->fetchRow($xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("stories_votedata")." WHERE ratinguser ='$uid' AND ratingtimestamp > '$since'"));
+    list($ret) = $xoopsDB->fetchRow($xoopsDB->query('SELECT COUNT(*) FROM ' . $xoopsDB->prefix('news_stories_votedata') . " WHERE ratinguser ='$uid' AND ratingtimestamp > '$since'"));
 
     return $ret;
 }

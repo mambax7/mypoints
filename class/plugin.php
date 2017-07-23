@@ -15,24 +15,22 @@
  * @package         MyPoints
  * @since           1.0
  * @author          trabis <lusopoemas@gmail.com>
- * @version         $Id: plugin.php 0 2009-11-14 18:47:04Z trabis $
  */
-
-defined('XOOPS_ROOT_PATH') or die("XOOPS root path not defined");
+// defined('XOOPS_ROOT_PATH') || exit("XOOPS root path not defined");
 
 class MypointsPlugin extends XoopsObject
 {
     /**
      * constructor
      */
-    function __construct()
+    public function __construct()
     {
-        $this->initVar("pluginid", XOBJ_DTYPE_INT);
-        $this->initVar("pluginmid", XOBJ_DTYPE_INT);
+        $this->initVar('pluginid', XOBJ_DTYPE_INT);
+        $this->initVar('pluginmid', XOBJ_DTYPE_INT);
         $this->initVar('pluginname', XOBJ_DTYPE_TXTBOX, '');
         $this->initVar('plugintype', XOBJ_DTYPE_TXTBOX, 'items');
-        $this->initVar("pluginmulti", XOBJ_DTYPE_INT,1);
-        $this->initVar("pluginisactive", XOBJ_DTYPE_INT,1);
+        $this->initVar('pluginmulti', XOBJ_DTYPE_INT, 1);
+        $this->initVar('pluginisactive', XOBJ_DTYPE_INT, 1);
     }
 }
 
@@ -40,20 +38,19 @@ class MypointspluginHandler extends XoopsPersistableObjectHandler
 {
     /**
      * constructor
+     * @param XoopsDatabase $db
      */
-    function __construct(&$db)
+    public function __construct(XoopsDatabase $db)
     {
-        parent::__construct($db, "mypoints_plugin", 'MypointsPlugin', "pluginid", "pluginmid");
+        parent::__construct($db, 'mypoints_plugin', 'MypointsPlugin', 'pluginid', 'pluginmid');
     }
 
-    function getByModuleType($mid, $type)
+    public function getByModuleType($mid, $type)
     {
         $plugin = false;
-        $mid = intval($mid);
+        $mid    = (int)$mid;
         if ($mid > 0) {
-            $sql = 'SELECT * FROM '.$this->db->prefix('mypoints_plugin')
-            . ' WHERE pluginmid=' . $mid
-            .' AND plugintype=' . $this->db->quoteString($type);
+            $sql = 'SELECT * FROM ' . $this->db->prefix('mypoints_plugin') . ' WHERE pluginmid=' . $mid . ' AND plugintype=' . $this->db->quoteString($type);
             if (!$result = $this->db->query($sql)) {
                 return $plugin;
             }
