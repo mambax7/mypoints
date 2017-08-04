@@ -31,3 +31,16 @@ define('_MI_MYPOINTS_COUNTADMIN_DSC', 'Do you want to show admins in the top lis
 
 define('_MI_MYPOINTS_COUNTSINCE', 'Count since');
 define('_MI_MYPOINTS_COUNTSINCE_DSC', 'Count points since this date.');
+//1.02
+//Help
+define('_MI_MYPOINTS_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_MYPOINTS_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+define('_MI_MYPOINTS_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_MYPOINTS_OVERVIEW', 'Overview');
+
+//define('_MI_MYPOINTS_HELP_DIR', __DIR__);
+
+//help multi-page
+define('_MI_MYPOINTS_DISCLAIMER', 'Disclaimer');
+define('_MI_MYPOINTS_LICENSE', 'License');
+define('_MI_MYPOINTS_SUPPORT', 'Support');

@@ -1,12 +1,7 @@
 <div id="help-template" class="outer">
-    <h1 class="head">Help:
-        <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/mypoints/admin/index.php"
-           title="Back to the administration of My Points"> My Points
-            <img src="<{xoAdminIcons home.png}>"
-                 alt="Back to the Administration of My Points">
-        </a></h1>
+    <{include file=$smarty.const._MI_MYPOINTS_HELP_HEADER}>
 
-    <h4 class="odd">DESCRIPTION</h4>
+    <h4 class="odd">DESCRIPTION</h4> <br>
 
     <p class="even">With this XOOPS module, your can give you members points for each submission or vote.<br> <br>
 

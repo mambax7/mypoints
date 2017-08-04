@@ -1,6 +1,6 @@
 <?php
 define('_AB_MYPOINTS_AUTHOR_INFO', 'Contributors information');
-define('_AB_MYPOINTS_AUTHOR_WORD',"The Author's Word");
+define('_AB_MYPOINTS_AUTHOR_WORD', "The Author's Word");
 define('_AB_MYPOINTS_BY', 'By');
 define('_AB_MYPOINTS_DEVELOPER_CONTRIBUTOR', 'Contributor(s)');
 define('_AB_MYPOINTS_DEVELOPER_CREDITS', 'Credits');

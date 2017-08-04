@@ -19,7 +19,7 @@
 // defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 $modversion['version']       = '1.02';
 $modversion['module_status'] = 'Beta 1';
-$modversion['release_date']  = '2014/04/23';
+$modversion['release_date']  = '2017/07/23';
 $modversion['name']          = _MI_MYPOINTS_NAME;
 $modversion['description']   = _MI_MYPOINTS_DSC;
 $modversion['author']        = 'Trabis (Xuups)';
@@ -30,14 +30,8 @@ $modversion['license_url']   = 'www.gnu.org/licenses/gpl-2.0.html';
 $modversion['official']      = 0; //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
 $modversion['image']         = 'assets/images/logoModule.png';
 $modversion['dirname']       = basename(__DIR__);
-
-//$modversion['dirmoduleadmin'] = '/Frameworks/moduleclasses/moduleadmin';
-//$modversion['icons16']        = '../../Frameworks/moduleclasses/icons/16';
-//$modversion['icons32']        = '../../Frameworks/moduleclasses/icons/32';
 $modversion['modicons16'] = 'assets/images/icons/16';
 $modversion['modicons32'] = 'assets/images/icons/32';
-
-//about
 $modversion['module_website_url']  = 'www.xoops.org';
 $modversion['module_website_name'] = 'XOOPS';
 $modversion['min_php']             = '5.5';
@@ -63,6 +57,14 @@ $modversion['adminmenu']  = 'admin/menu.php';
 // Menu
 $modversion['hasMain']     = 1;
 $modversion['system_menu'] = 1;
+
+// ------------------- Help files ------------------- //
+$modversion['helpsection'] = array(
+    ['name' => _MI_MYPOINTS_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_MYPOINTS_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_MYPOINTS_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_MYPOINTS_SUPPORT, 'link' => 'page=support'],
+);
 
 // Templates
 $i = 0;
