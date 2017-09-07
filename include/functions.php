@@ -28,7 +28,7 @@ function mypoints_pluginExecute($dirname, $items, $since, $func = 'useritems_cou
 {
     global $xoopsUser, $xoopsConfig, $xoopsDB;
 
-    $ret          = array();
+    $ret          = [];
     $plugins_path = XOOPS_ROOT_PATH . '/modules/mypoints/plugins';
     $plugin_info  = mypoints_getPluginInfo($dirname, $func);
 
@@ -63,27 +63,27 @@ function mypoints_getPluginInfo($dirname, $func = 'useritems_count')
 
     if (file_exists($module_plugin_file)) {
         // module side (1st priority)
-        $ret = array(
+        $ret = [
             'plugin_path' => $module_plugin_file,
             'func'        => $dirname . '_' . $func,
             'type'        => 'module'
-        );
+        ];
     } elseif (!empty($mytrustdirname) && file_exists($d3module_plugin_file)) {
         // D3 module's plugin under xoops_trust_path (2nd priority)
-        $ret = array(
+        $ret = [
             'plugin_path' => $d3module_plugin_file,
             'func'        => $mytrustdirname . '_' . $func,
             'type'        => 'module (D3)'
-        );
+        ];
     } elseif (file_exists($builtin_plugin_file)) {
         // built-in plugin under modules/mypoints (3rd priority)
-        $ret = array(
+        $ret = [
             'plugin_path' => $builtin_plugin_file,
             'func'        => $dirname . '_' . $func,
             'type'        => 'built-in'
-        );
+        ];
     } else {
-        $ret = array();
+        $ret = [];
     }
 
     return $ret;
@@ -130,7 +130,7 @@ function mypoints_updatePoints($force = 0)
         } else {
             $query = $xoopsDB->query('SELECT uid, uname FROM ' . $xoopsDB->prefix('users') . ' ORDER BY uid');
         }
-        $users = array();
+        $users = [];
         while (list($uid, $uname) = $xoopsDB->fetchRow($query)) {
 
             // Calculate User Points

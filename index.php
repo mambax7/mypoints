@@ -74,7 +74,7 @@ $criteria->setOrder('DESC');
 $criteria->setLimit($limit);
 //$criteria->setStart($start);
 $users   = $userHandler->getObjects($criteria);
-$myusers = array();
+$myusers = [];
 
 $i = 1;
 foreach ($users as $user) {

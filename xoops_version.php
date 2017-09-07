@@ -16,7 +16,7 @@
  * @since           1.0
  * @author          trabis <lusopoemas@gmail.com>
  */
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 $modversion['version']       = '1.02';
 $modversion['module_status'] = 'Beta 1';
 $modversion['release_date']  = '2017/07/23';
@@ -37,7 +37,7 @@ $modversion['module_website_name'] = 'XOOPS';
 $modversion['min_php']             = '5.5';
 $modversion['min_xoops']           = '2.5.9';
 $modversion['min_admin']           = '1.2';
-$modversion['min_db']              = array('mysql' => '5.5');
+$modversion['min_db']              = ['mysql' => '5.5'];
 
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 
@@ -59,12 +59,12 @@ $modversion['hasMain']     = 1;
 $modversion['system_menu'] = 1;
 
 // ------------------- Help files ------------------- //
-$modversion['helpsection'] = array(
+$modversion['helpsection'] = [
     ['name' => _MI_MYPOINTS_OVERVIEW, 'link' => 'page=help'],
     ['name' => _MI_MYPOINTS_DISCLAIMER, 'link' => 'page=disclaimer'],
     ['name' => _MI_MYPOINTS_LICENSE, 'link' => 'page=license'],
     ['name' => _MI_MYPOINTS_SUPPORT, 'link' => 'page=support'],
-);
+];
 
 // Templates
 $i = 0;
@@ -96,7 +96,7 @@ $modversion['config'][$i]['description'] = '_MI_MYPOINTS_NAMEDISPLAY_DSC';
 $modversion['config'][$i]['formtype']    = 'select';
 $modversion['config'][$i]['valuetype']   = 'int';
 $modversion['config'][$i]['default']     = 1;
-$modversion['config'][$i]['options']     = array('_MI_MYPOINTS_DISPLAYNAME1' => 1, '_MI_MYPOINTS_DISPLAYNAME2' => 2);
+$modversion['config'][$i]['options']     = ['_MI_MYPOINTS_DISPLAYNAME1' => 1, '_MI_MYPOINTS_DISPLAYNAME2' => 2];
 
 ++$i;
 $modversion['config'][$i]['name']        = 'refreshtime';

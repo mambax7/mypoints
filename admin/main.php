@@ -38,9 +38,9 @@ function mypoints_index()
     $modules  = $moduleHandler->getObjects($criteria, true);
     unset($criteria);
     //get list of useritems_count plugins
-    $items_plugins = array();
+    $items_plugins = [];
     foreach ($modules as $moduleid => $module) {
-        $info = array();
+        $info = [];
         $info = mypoints_getPluginInfo($module->getVar('dirname'), 'useritems_count');
         if (is_array($info) && count($info) > 0) {
             require_once $info['plugin_path'];
@@ -52,9 +52,9 @@ function mypoints_index()
     }
 
     //get list of uservotes_count plugins
-    $votes_plugins = array();
+    $votes_plugins = [];
     foreach ($modules as $moduleid => $module) {
-        $info = array();
+        $info = [];
         $info = mypoints_getPluginInfo($module->getVar('dirname'), 'uservotes_count');
         if (is_array($info) && count($info) > 0) {
             require_once $info['plugin_path'];
@@ -187,7 +187,6 @@ function mypoints_update_plugins()
 
     mypoints_updatePoints(1);
     redirect_header('main.php', 1, _AM_MYPOINTS_DONE);
-    exit;
 }
 
 switch ($choice) {
