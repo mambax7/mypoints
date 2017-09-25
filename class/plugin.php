@@ -55,7 +55,7 @@ class MypointspluginHandler extends XoopsPersistableObjectHandler
                 return $plugin;
             }
             $numrows = $this->db->getRowsNum($result);
-            if ($numrows == 1) {
+            if (1 == $numrows) {
                 $plugin = new Mypointsplugin();
                 $plugin->assignVars($this->db->fetchArray($result));
             }

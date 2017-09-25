@@ -39,16 +39,16 @@ $xoopsTpl->assign('topmessage', sprintf(_MA_MYPOINTS_TOPMESSAGE, $limit, $xoopsC
 
 if ($refreshtime < 60) {
     $refreshtimes = $refreshtime;
-    $message      = $refreshtimes == 1 ? _MA_MYPOINTS_LSECOND : _MA_MYPOINTS_LSECONDS;
+    $message      = 1 == $refreshtimes ? _MA_MYPOINTS_LSECOND : _MA_MYPOINTS_LSECONDS;
 } elseif ($refreshtime < 3600) {
     $refreshtimes = (int)($refreshtime / 60);
-    $message      = $refreshtimes == 1 ? _MA_MYPOINTS_LMINUTE : _MA_MYPOINTS_LMINUTES;
+    $message      = 1 == $refreshtimes ? _MA_MYPOINTS_LMINUTE : _MA_MYPOINTS_LMINUTES;
 } elseif ($refreshtime < 86400) {
     $refreshtimes = (int)($refreshtime / 3600);
-    $message      = $refreshtimes == 1 ? _MA_MYPOINTS_LHOUR : _MA_MYPOINTS_LHOURS;
+    $message      = 1 == $refreshtimes ? _MA_MYPOINTS_LHOUR : _MA_MYPOINTS_LHOURS;
 } else {
     $refreshtimes = (int)($refreshtime / 86400);
-    $message      = $refreshtimes == 1 ? _MA_MYPOINTS_LDAY : _MA_MYPOINTS_LDAYS;
+    $message      = 1 == $refreshtimes ? _MA_MYPOINTS_LDAY : _MA_MYPOINTS_LDAYS;
 }
 
 $xoopsTpl->assign('updatemessage', sprintf(_MA_MYPOINTS_UPDATEMESSAGE, $refreshtimes, $message));
@@ -61,7 +61,7 @@ $criteria->setOrder('DESC');
 $plugins = $pluginHandler->getObjects($criteria);
 unset($criteria);
 
-if ($details == 1) {
+if (1 == $details) {
     foreach ($plugins as $plugin) {
         $myplugins[]['pluginname'] = $plugin->getVar('pluginname');
     }
@@ -81,7 +81,7 @@ foreach ($users as $user) {
     if ($user->getVar('userpoints') > 0) {
         $myusers[$i]['rank'] = $i;
         $myusers[$i]['link'] = "<a href='" . XOOPS_URL . '/userinfo.php?uid=' . $user->getVar('useruid') . "'>" . $user->getVar('useruname') . '</a>';
-        if ($details == 1) {
+        if (1 == $details) {
             foreach ($plugins as $plugin) {
                 $relation                      = $relationHandler->getByPluginUid($plugin->getVar('pluginid'), $user->getVar('useruid'));
                 $points                        = is_object($relation) ? $relation->getVar('relationpoints') : 0;
@@ -96,7 +96,7 @@ foreach ($users as $user) {
 $xoopsTpl->assign('users', $myusers);
 
 $detailslink = "<a href='index.php?det=";
-if ($details == 1) {
+if (1 == $details) {
     $detailslink .= "0' title='" . _MA_MYPOINTS_MOREOFF . "'>" . _MA_MYPOINTS_MOREOFF . '</a>';
 } else {
     $detailslink .= "1' title='" . _MA_MYPOINTS_MOREON . "'>" . _MA_MYPOINTS_MOREON . '</a>';
@@ -106,7 +106,7 @@ $xoopsTpl->assign('detailslink', $detailslink);
 $message = '';
 foreach ($plugins as $plugin) {
     $message .= $plugin->getVar('pluginname') . ' : ';
-    $points  = $plugin->getVar('pluginmulti') == 1 ? _MA_MYPOINTS_LPOINT : _MA_MYPOINTS_LPOINTS;
+    $points  = 1 == $plugin->getVar('pluginmulti') ? _MA_MYPOINTS_LPOINT : _MA_MYPOINTS_LPOINTS;
     $message .= $plugin->getVar('pluginmulti') . ' ' . $points . '<br>';
 }
 

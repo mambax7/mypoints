@@ -53,7 +53,7 @@ class MypointsRelationHandler extends XoopsPersistableObjectHandler
             return $relation;
         }
         $numrows = $this->db->getRowsNum($result);
-        if ($numrows == 1) {
+        if (1 == $numrows) {
             $relation = new MypointsRelation();
             $relation->assignVars($this->db->fetchArray($result));
         }

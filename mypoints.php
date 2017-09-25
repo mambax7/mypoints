@@ -37,7 +37,7 @@ if (isset($_GET['uid'])) {
     }
 }
 
-if ($uid == 0) {
+if (0 == $uid) {
     redirect_header(XOOPS_URL . '/modules/mypoints/index.php', 2, _NOPERM);
 }
 
@@ -59,16 +59,16 @@ $xoopsTpl->assign('topmessage', sprintf(_MA_MYPOINTS_USERTOPMESSAGE, $thisUser->
 
 if ($refreshtime < 60) {
     $refreshtimes = $refreshtime;
-    $message      = $refreshtimes == 1 ? _MA_MYPOINTS_LSECOND : _MA_MYPOINTS_LSECONDS;
+    $message      = 1 == $refreshtimes ? _MA_MYPOINTS_LSECOND : _MA_MYPOINTS_LSECONDS;
 } elseif ($refreshtime < 3600) {
     $refreshtimes = (int)($refreshtime / 60);
-    $message      = $refreshtimes == 1 ? _MA_MYPOINTS_LMINUTE : _MA_MYPOINTS_LMINUTES;
+    $message      = 1 == $refreshtimes ? _MA_MYPOINTS_LMINUTE : _MA_MYPOINTS_LMINUTES;
 } elseif ($refreshtime < 86400) {
     $refreshtimes = (int)($refreshtime / 3600);
-    $message      = $refreshtimes == 1 ? _MA_MYPOINTS_LHOUR : _MA_MYPOINTS_LHOURS;
+    $message      = 1 == $refreshtimes ? _MA_MYPOINTS_LHOUR : _MA_MYPOINTS_LHOURS;
 } else {
     $refreshtimes = (int)($refreshtime / 86400);
-    $message      = $refreshtimes == 1 ? _MA_MYPOINTS_LDAY : _MA_MYPOINTS_LDAYS;
+    $message      = 1 == $refreshtimes ? _MA_MYPOINTS_LDAY : _MA_MYPOINTS_LDAYS;
 }
 
 $xoopsTpl->assign('updatemessage', sprintf(_MA_MYPOINTS_UPDATEMESSAGE, $refreshtimes, $message));
@@ -102,7 +102,7 @@ $xoopsTpl->assign('user', $myuser);
 $message = '';
 foreach ($plugins as $plugin) {
     $message .= $plugin->getVar('pluginname') . ' : ';
-    $points  = $plugin->getVar('pluginmulti') == 1 ? _MA_MYPOINTS_LPOINT : _MA_MYPOINTS_LPOINTS;
+    $points  = 1 == $plugin->getVar('pluginmulti') ? _MA_MYPOINTS_LPOINT : _MA_MYPOINTS_LPOINTS;
     $message .= $plugin->getVar('pluginmulti') . ' ' . $points . '<br>';
 }
 

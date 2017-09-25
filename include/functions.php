@@ -112,7 +112,7 @@ function mypoints_updatePoints($force = 0)
         $timestamp = $user->getVar('useruname');
     }
 
-    if (((time() - $timestamp) >= $refreshtime) || $force == 1) {
+    if (((time() - $timestamp) >= $refreshtime) || 1 == $force) {
         // Timer expired, update table
         // Set date of update
         $userHandler->deleteAll();
@@ -125,7 +125,7 @@ function mypoints_updatePoints($force = 0)
         $userHandler->insert($user);
 
         // Prep to calculate user points
-        if ($countwebm == 0) {
+        if (0 == $countwebm) {
             $query = $xoopsDB->query('SELECT uid, uname FROM ' . $xoopsDB->prefix('users') . " WHERE rank = '0' ORDER BY uid");
         } else {
             $query = $xoopsDB->query('SELECT uid, uname FROM ' . $xoopsDB->prefix('users') . ' ORDER BY uid');

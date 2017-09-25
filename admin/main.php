@@ -84,12 +84,12 @@ function mypoints_index()
         echo "<td class = 'even'><select name=items_actif[" . $module->getVar('mid') . ']>';
 
         $sel = '';
-        if ($actif == '1') {
+        if ('1' == $actif) {
             $sel = 'SELECTED';
         }
         echo '<option ' . $sel . " value=\"1\">" . _AM_MYPOINTS_ACTIVE . "\n</option>\n";
         $sel = '';
-        if ($actif == '0') {
+        if ('0' == $actif) {
             $sel = 'SELECTED';
         }
         echo '<option ' . $sel . " value=\"0\">" . _AM_MYPOINTS_INACTIVE . "\n</option>\n";
@@ -112,12 +112,12 @@ function mypoints_index()
         echo "<td class = 'even'><input type='text' name='votes_name[" . $module->getVar('mid') . "]' size=20 value='" . $name . "'></td>";
         echo "<td class = 'even'><select name=votes_actif[" . $module->getVar('mid') . ']>';
         $sel = '';
-        if ($actif == '1') {
+        if ('1' == $actif) {
             $sel = 'SELECTED';
         }
         echo '<option ' . $sel . " value=\"1\">" . _AM_MYPOINTS_ACTIVE . "\n</option>\n";
         $sel = '';
-        if ($actif == '0') {
+        if ('0' == $actif) {
             $sel = 'SELECTED';
         }
         echo '<option ' . $sel . " value=\"0\">" . _AM_MYPOINTS_INACTIVE . "\n</option>\n";
